@@ -47,13 +47,6 @@ The dataset used for training contains speech and non-speech audio samples.
 Due to GitHub file size limitations, the dataset is **not included in this repository**.
 The dataset used for training is approximately **330MB**, which exceeds GitHub's file upload limit.
 
-To reproduce the training process, users should place the dataset in a folder named:
-
-```
-data/
-```
-
-before running the training script.
 
 ---
 
