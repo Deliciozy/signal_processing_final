@@ -1,12 +1,12 @@
-# signal_processing_final# Voice-Aware Background Music Controller
+# Voice-Aware Background Music Controller
 
 ## Project Overview
 
-This project implements a real-time voice detection system that automatically adjusts background music volume based on whether human speech is detected.
+This project implements a real-time voice detection system that automatically adjusts background music volume when human speech is detected.
 
-The system listens to microphone input and detects the presence of human voice using a trained machine learning model. When speech is detected, the system lowers the background music volume to make the voice clearer. When speech stops, the music volume returns to its original level.
+The system listens to microphone input and uses a trained machine learning model to detect whether a person is speaking. When speech is detected, the background music volume is automatically reduced. When speech stops, the music volume returns to its original level.
 
-This feature simulates an automatic audio mixing behavior commonly used in streaming, broadcasting, and smart audio systems.
+This simulates a common audio mixing feature used in streaming, broadcasting, and smart audio systems.
 
 ---
 
@@ -15,47 +15,53 @@ This feature simulates an automatic audio mixing behavior commonly used in strea
 The system works in three main steps:
 
 1. **Feature Extraction**
-   Audio features are extracted from microphone input (such as spectral or audio signal features).
+   Audio features are extracted from microphone input.
 
 2. **Voice Detection Model**
-   A machine learning model (SVM) is trained to classify whether the input audio contains human speech.
+   A machine learning classifier is trained to distinguish between speech and non-speech audio.
 
-3. **Dynamic Music Volume Control**
+3. **Dynamic Volume Control**
 
-   * If speech is detected → background music volume is reduced to **30%**
-   * If speech stops → background music volume returns to **100%**
+* Speech detected → background music volume reduced to **30%**
+* Speech stops → background music volume returns to **100%**
 
 ---
 
-## Project Structure
+## Repository Structure
 
 ```
-project/
-│
-├── 3_live_demo.py              # Real-time demo for voice detection and music control
-├── train_model.py               # Script used to train the voice detection model
-├── visualize_features.py        # Visualization of extracted audio features
-├── requirements.txt             # Python dependencies
-├── speech_detection_svm.pkl     # Trained machine learning model
-├── project_visualizations.png   # Feature visualization results
-└── data/                        # Dataset used for training
+3_live_demo.py              # Real-time demo program
+train_model.py              # Script used to train the voice detection model
+visualize_features.py       # Feature visualization for audio data
+requirements.txt            # Required Python libraries
+project_visualizations.png  # Visualization of extracted features
+README.md                   # Project documentation
 ```
 
 ---
 
 ## Dataset
 
-The training dataset was obtained from publicly available audio datasets containing speech and non-speech samples.
+The dataset used for training contains speech and non-speech audio samples.
 
-The dataset is used to train a classifier that distinguishes between human voice and background noise/music.
+Due to GitHub file size limitations, the dataset is **not included in this repository**.
+The dataset used for training is approximately **330MB**, which exceeds GitHub's file upload limit.
+
+To reproduce the training process, users should place the dataset in a folder named:
+
+```
+data/
+```
+
+before running the training script.
 
 ---
 
 ## Installation
 
-Clone the repository and install the required dependencies.
+Install the required Python libraries:
 
-```bash
+```
 pip install -r requirements.txt
 ```
 
@@ -65,49 +71,49 @@ pip install -r requirements.txt
 
 To train the speech detection model, run:
 
-```bash
+```
 python train_model.py
 ```
 
-This script will process the dataset, extract audio features, and train an SVM classifier.
+This script will load the dataset from the `data/` directory, extract audio features, and train a classifier.
 
 ---
 
 ## Running the Live Demo
 
-To run the real-time system:
+To run the real-time voice detection demo:
 
-```bash
+```
 python 3_live_demo.py
 ```
 
 The program will:
 
-1. Load the trained model
-2. Ask for a background music file name
-3. Monitor microphone input
-4. Adjust music volume automatically when speech is detected
+1. Ask the user to input the name of a background music file
+2. Monitor microphone input
+3. Detect when speech occurs
+4. Automatically adjust the background music volume
 
 ---
 
 ## Example Behavior
 
-* Background music starts playing at **100% volume**
-* When the user speaks into the microphone → music volume reduces to **30%**
-* When the user stops speaking → music returns to **100% volume**
+* Background music starts at **100% volume**
+* When the user speaks → music volume decreases to **30%**
+* When the user stops speaking → music volume returns to **100%**
 
 ---
 
 ## Requirements
 
-Main libraries used in this project include:
+Main libraries used in this project:
 
 * Python
 * NumPy
 * Librosa
 * Scikit-learn
 * PyAudio
-* Pygame (for music playback)
+* Pygame
 
 All dependencies are listed in `requirements.txt`.
 
@@ -115,4 +121,4 @@ All dependencies are listed in `requirements.txt`.
 
 ## Project Goal
 
-The goal of this project is to demonstrate how machine learning can be used in real-time audio processing to improve user experience in applications such as streaming, smart assistants, and audio production tools.
+The goal of this project is to demonstrate how machine learning can be applied to real-time audio processing to automatically adjust background music based on human speech detection.
